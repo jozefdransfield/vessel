@@ -2,19 +2,19 @@
   "name": "vessel",
   "description": "Dependency Injection for NodeJs",
   "version": "0.0.1",
-  "homepage": "https://github.com/jozefdransfield/node-config",
+  "homepage": "https://github.com/jozefdransfield/vessel",
   "author": {
     "name": "Jozef Dransfield",
     "email": "Jozef.Dransfield@me.com"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:jozefdransfield/Vessel.git"
+    "url": "git@github.com:jozefdransfield/vessel.git"
   },
   "bugs": {
     "url": "https://github.com/jozefdransfield/vessel/issues"
   },
-  "main": "Vessel.js",
+  "main": "vessel.js",
   "engines": {
     "node": ">=0.8.0"
   },

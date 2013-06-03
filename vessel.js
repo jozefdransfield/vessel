@@ -1,5 +1,6 @@
 "use strict";
 
+
 var _ = require("underscore")._;
 
 function construct(constructor, args) {
