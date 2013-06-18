@@ -16,7 +16,7 @@ function trim(str) {
     return str.replace(/^\s+/, '').replace(/\s+$/, '');
 }
 
-function parseParams(vessel, func) {
+function parseParams(name, vessel, func) {
     var paramMatcher = /^.*function.*\((.*)\)/;
     var match = paramMatcher.exec(func.toString());
 
@@ -33,7 +33,11 @@ function parseParams(vessel, func) {
     var args = [];
     for (var i in params) {
         var param = params[i];
-        args.push(vessel.get(param));
+        try {
+            args.push(vessel.get(param));
+        } catch (e) {
+            throw new Error("Failed to build [" + name + '] because: ' + e.message);
+        }
     }
     return args;
 }
@@ -65,13 +69,13 @@ module.exports.Vessel = function Vessel() {
             return instances[name];
         } else if (map[name] instanceof Function) {
             var func = map[name];
-            args = parseParams(this, func);
+            args = parseParams(name, this, func);
             instance = func.apply(null, args);
             instances[name] = instance;
             return instance;
         } else if (map[name] instanceof Constructor) {
             var constructor = map[name];
-            args = parseParams(this, constructor.func);
+            args = parseParams(name, this, constructor.func);
             instance = construct(constructor.func, args);
             instances[name] = instance;
             return instance;

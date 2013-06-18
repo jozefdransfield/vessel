@@ -1,7 +1,7 @@
 {
   "name": "vessel",
   "description": "Dependency Injection for NodeJs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/jozefdransfield/vessel",
   "author": {
     "name": "Jozef Dransfield",
