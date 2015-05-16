@@ -1,7 +1,7 @@
 "use strict";
 
-
 var _ = require("underscore")._;
+var Promise = require("bluebird");
 
 function construct(constructor, args) {
     function F() {
@@ -28,6 +28,7 @@ function parseParams(name, vessel, func) {
         filter(function (param) {
             return param && param !== '';
         }).
+
         value();
 
     var args = [];
@@ -46,6 +47,14 @@ function Constructor(func) {
     this.func = func;
 }
 
+function hasCloseFunc (instance) {
+    return instance.close;
+}
+
+function close(instance) {
+    return instance.close();
+}
+
 module.exports.Vessel = function Vessel() {
     var instances = {};
     var map = {};
@@ -57,7 +66,7 @@ module.exports.Vessel = function Vessel() {
         instances[name] = object;
     };
 
-    this.func = function(name, func) {
+    this.func = function (name, func) {
         map[name] = func;
     };
 
@@ -81,4 +90,8 @@ module.exports.Vessel = function Vessel() {
             return instance;
         }
     };
+
+    this.close = function () {
+          return Promise.all(_(instances).chain().filter(hasCloseFunc).map(close).value());
+    }
 };

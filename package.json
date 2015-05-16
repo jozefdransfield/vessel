@@ -1,7 +1,7 @@
 {
   "name": "vessel",
   "description": "Dependency Injection for NodeJs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/jozefdransfield/vessel",
   "author": {
     "name": "Jozef Dransfield",
@@ -18,12 +18,11 @@
   "engines": {
     "node": ">=0.8.0"
   },
-
   "keywords": [],
   "dependencies": {
+    "bluebird": "^2.9.25",
     "underscore": "1.4.3"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "readmeFilename": "README.md"
 }
